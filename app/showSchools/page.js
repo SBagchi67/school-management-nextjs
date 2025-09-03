@@ -59,12 +59,14 @@ export default function ShowSchools() {
             onMouseEnter={(e) =>
               (e.currentTarget.style.transform = "scale(1.02)")
             }
-            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.transform = "scale(1)")
+            }
           >
-            {/* Image */}
+            {/* ✅ Image */}
             {school.image && (
               <img
-                src={`/schoolImages/${school.image}`}
+                src={school.image} // 👈 Use Cloudinary URL directly
                 alt={school.name}
                 style={{
                   width: "100%",

@@ -1,18 +1,16 @@
 // app/api/addSchool/route.js
-// This is the "backend waiter" that receives form data, saves image, and inserts into DB
+// Backend API to receive form data, upload image to Cloudinary, and insert into MySQL
 
 import { NextResponse } from "next/server";
-import path from "path";                 // helps build file paths
-import { writeFile } from "fs/promises"; // to save uploaded files
-import { pool } from "@/lib/db";         // import our DB connection
+import { pool } from "@/lib/db";
+import cloudinary from "@/lib/cloudinary"; // 👈 import Cloudinary config
 
-// This function will run when user submits the form (POST request)
 export async function POST(req) {
   try {
     // Get all form data from request
     const formData = await req.formData();
 
-    // Extract fields from form
+    // Extract fields
     const name = formData.get("name");
     const address = formData.get("address");
     const city = formData.get("city");
@@ -21,30 +19,41 @@ export async function POST(req) {
     const email_id = formData.get("email_id");
     const imageFile = formData.get("image");
 
-    // Save image to /public/schoolImages
-    let imageName = null;
+    let imageUrl = null;
+
+    // ✅ Upload image to Cloudinary (instead of saving to public folder)
     if (imageFile && typeof imageFile !== "string") {
-      // Convert image file into buffer (binary data)
       const buffer = Buffer.from(await imageFile.arrayBuffer());
-      // Rename image with timestamp to avoid duplicate names
-      imageName = Date.now() + "-" + imageFile.name;
-      // Path where image will be saved
-      const imagePath = path.join(process.cwd(), "public", "schoolImages", imageName);
-      // Write file to the path
-      await writeFile(imagePath, buffer);
+
+      const uploaded = await new Promise((resolve, reject) => {
+        cloudinary.uploader
+          .upload_stream({ folder: "schoolImages" }, (error, result) => {
+            if (error) reject(error);
+            else resolve(result);
+          })
+          .end(buffer); // send file buffer to Cloudinary
+      });
+
+      imageUrl = uploaded.secure_url; // Store full Cloudinary URL
     }
 
-    // Insert data into MySQL
+    // Insert data into MySQL (store Cloudinary URL instead of local filename)
     const sql = `INSERT INTO schools 
                  (name, address, city, state, contact, image, email_id)
                  VALUES (?, ?, ?, ?, ?, ?, ?)`;
-    await pool.execute(sql, [name, address, city, state, contact, imageName, email_id]);
+    await pool.execute(sql, [
+      name,
+      address,
+      city,
+      state,
+      contact,
+      imageUrl,
+      email_id,
+    ]);
 
-    // Send success response
     return NextResponse.json({ message: "School added successfully" });
   } catch (err) {
     console.error("Error adding school:", err);
-    // Send error response
     return NextResponse.json({ error: "Failed to add school" }, { status: 500 });
   }
 }
