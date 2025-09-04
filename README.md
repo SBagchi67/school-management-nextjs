@@ -85,10 +85,10 @@ If you want to run this project locally:
 ## 📸 Screenshots
 
 ### Add School Page
-![Add School Page](./screenshots/add-school.png)
+![Add School Page](screenshots/add-School.png)
 
 ### Show Schools Page
-![Show Schools Page](./screenshots/show-schools.png)
+![Show Schools Page](screenshots/show-Schools.png)
 
 ---
 
