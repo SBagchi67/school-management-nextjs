@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📘 School Management (Next.js + MySQL + Cloudinary)
 
-## Getting Started
+This is a small full-stack project built as part of a web development assignment.
+The app allows users to **add schools** (with details and an image) and **view schools** in a grid layout.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* Add new schools with:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+  * Name, Address, City, State, Contact, Email
+  * Upload a school image (stored in Cloudinary)
+* Responsive design (works on desktop & mobile)
+* View all added schools in a clean grid (like products in an e-commerce site)
+* MySQL database hosted on Railway
+* Deployed on Vercel for easy access
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📂 Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+* **Next.js 13 (App Router)** – frontend + backend APIs
+* **React Hook Form** – form validation
+* **MySQL (Railway)** – database
+* **Cloudinary** – image storage
+* **Vercel** – hosting
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ⚙️ Setup Instructions
 
-## Deploy on Vercel
+If you want to run this project locally:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Clone the repo**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   git clone https://github.com/SBagchi67/school-management-nextjs.git
+   cd school-management-nextjs
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Create a `.env.local` file** in the root folder and add:
+
+   ```
+   DB_HOST=your-db-host
+   DB_USER=your-db-user
+   DB_PASSWORD=your-db-password
+   DB_NAME=your-db-name
+   DB_PORT=your-db-port
+
+   CLOUDINARY_CLOUD_NAME=your-cloud-name
+   CLOUDINARY_API_KEY=your-cloud-api-key
+   CLOUDINARY_API_SECRET=your-cloud-api-secret
+   ```
+
+   > (These values come from Railway for DB, and Cloudinary for image storage)
+
+4. **Run the project**
+
+   ```bash
+   npm run dev
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 🌐 Live Demo
+
+* **Frontend (Vercel)**: [[https://school-management-nextjs.vercel.app](https://school-management-nextjs.vercel.app)](https://school-management-nextjs-4xc315p37-subhrajitbagchis-projects.vercel.app)
+* **GitHub Repo**: [https://github.com/SBagchi67/school-management-nextjs](https://github.com/SBagchi67/school-management-nextjs)
+
+---
+
+## 📸 Screenshots
+
+*Add a couple of screenshots of your `/addSchool` form and `/showSchools` page here to make it look nice.*
+
+## 📸 Screenshots
+
+### Add School Page
+![Add School Page](./screenshots/add-school.png)
+
+### Show Schools Page
+![Show Schools Page](./screenshots/show-schools.png)
+
+---
+
+## ✨ Author
+
+Developed by **Subhrajit Bagchi** as part of a web development assignment.
+
+
+
+👉 Do you want me to also give you a **sample screenshots section** (with markdown image tags), so you can just upload your screenshots and link them?
