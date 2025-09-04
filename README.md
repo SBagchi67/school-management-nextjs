@@ -73,7 +73,7 @@ If you want to run this project locally:
 
 ## 🌐 Live Demo
 
-* **Frontend (Vercel)**: [[https://school-management-nextjs.vercel.app](https://school-management-nextjs.vercel.app)](https://school-management-nextjs-4xc315p37-subhrajitbagchis-projects.vercel.app)
+* **Frontend (Vercel)**: https://school-management-nextjs-tawny.vercel.app/
 * **GitHub Repo**: [https://github.com/SBagchi67/school-management-nextjs](https://github.com/SBagchi67/school-management-nextjs)
 
 ---
